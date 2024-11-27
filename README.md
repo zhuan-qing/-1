@@ -9,8 +9,53 @@
 ## 二、实验准备
 1、复习字符串的概念和特性。
 2、复习字符串的几种表示方式。
-3、复习字符串数组和指针的内容。
+3、复习字符串数组和函数的内容。
 
 ## 三、实验内容
 1、下面列出一些字符串函数:
-strlen、strcmp、strchr、strrchr、strstr、strcasestr、strcpy
+strlen、strcmp、strchr、strrchr、strstr、strcasestr、strcpy。
+搜索信息了解到,使用字符串函数需要头文件 #include <string.h>
+
+2、下面我们来研究strlen函数的用法
+(1)strlen函数基本用法
+运行下面的程序,请回答strlen函数的作用是什么?strlen函数和sizeof函数的区别是什么?
+#include <stdio.h>
+#include <string.h>
+int main() {
+	char a[] = { "hello" };
+	printf("sizeof(a)=%lld\n", sizeof(a));
+	printf("strlen(a)=%lld\n", strlen(a));
+	return 0;
+}
+ 
+ 运行结果如下:
+sizeof(a)=6
+strlen(a)=5
+我们观察到,strlen函数和sizeof函数的作用都是返回字符串的长度,但是strlen函数返回字符串的长度不包括'\0'。
+
+(2)创造自己的strlen函数
+运行下面的程序,观察此方案是否可行。
+#include <stdio.h>
+#include <string.h>
+//函数声明
+int mylen(const char* a);
+int main() {
+	char a[] = { "hello" };
+	printf("strlen(a)=%lld\n", strlen(a));
+	printf("mylen(a)=%d", mylen(a));
+	return 0;
+}
+//自定义strlen函数
+int mylen(const char* a) {
+	int cnt = 0;
+	while (a[cnt] != '\0') {
+		cnt++;
+	}
+	return cnt;
+}
+## 四、实验总结
+
+运行结果如下:
+strlen(a)=5
+mylen(a)=5
+我们观察到,自己创造的mylen函数可以运行,并且和strlen的作用相同。
